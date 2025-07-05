@@ -3,18 +3,24 @@ class Solution {
         int n1=nums1.length;
         int n2=nums2.length;
 
-        int arr[] = new int[n1+n2];
-        int k=0;
-        for(int i=0;i<n1;i++){
-            arr[k] = nums1[i];
-            k++;
+        int n =n1+n2;
+        int arr[] = new int[n];
+        int p1 = 0;
+        int p2 = 0;
+        int k = 0;
+        while(p1<n1 && p2<n2){
+            if(nums1[p1]<nums2[p2]){
+                arr[k++] = nums1[p1++];
+            }else{
+                arr[k++] = nums2[p2++];
+            }
         }
-        for(int i=0;i<n2;i++){
-            arr[k] = nums2[i];
-            k++;
+        while(p1<n1){
+            arr[k++] = nums1[p1++];
         }
-        Arrays.sort(arr);
-        int n = n1+n2;
+        while(p2<n2){
+            arr[k++] = nums2[p2++];
+        }
         if((n1+n2)%2!=0){
             return arr[n/2];
         }else{
